@@ -1,0 +1,1633 @@
+/* ==========================================================================
+   NotebookLM Presentation - iOS 26 Liquid Glass & Ultra-Smooth Motion System
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
+
+:root {
+    /* Liquid Glass Color Palette */
+    --bg-dark: #03050c;
+    --bg-liquid-glass: rgba(14, 20, 36, 0.62);
+    --bg-liquid-card: rgba(16, 24, 44, 0.65);
+    --bg-liquid-card-hover: rgba(24, 36, 64, 0.78);
+    
+    /* Specular Borders & Highlights */
+    --border-liquid-specular: rgba(255, 255, 255, 0.32);
+    --border-liquid-subtle: rgba(255, 255, 255, 0.14);
+    --border-accent-cyan: rgba(56, 189, 248, 0.55);
+    --border-accent-emerald: rgba(52, 211, 153, 0.55);
+
+    /* Neon Liquid Accents */
+    --accent-blue: #38bdf8;
+    --accent-emerald: #10b981;
+    --accent-green: #34d399;
+    --accent-purple: #a855f7;
+    --accent-amber: #f59e0b;
+    --accent-rose: #f43f5e;
+    --accent-cyan: #06b6d4;
+
+    --text-main: #ffffff;
+    --text-muted: rgba(226, 232, 240, 0.92);
+    --text-dim: rgba(148, 163, 184, 0.85);
+
+    /* Liquid Glass Typography System */
+    --font-heading: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Ultra-Smooth 120Hz Motion Physics Easings */
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.25, 0.64, 1);
+    --transition-speed: 0.75s;
+}
+
+/* Keyframe Animations for Liquid Glass Text Shimmer & Glow */
+@keyframes liquidGlassSheen {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes liquidGlowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.4)) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.85));
+    }
+    50% {
+        filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.65)) drop-shadow(0 12px 35px rgba(0, 0, 0, 0.9));
+    }
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+}
+
+/* Background Canvas */
+#nebula-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Presentation Container */
+.presentation-app {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(12px, 2vh, 24px);
+}
+
+/* ==========================================================================
+   iOS 26 Liquid Glass Navigation Bar (Responsive & Glassmorphic)
+   ========================================================================== */
+
+.nav-container {
+    position: relative;
+    z-index: 100;
+    margin-top: 4px;
+    max-width: 96vw;
+}
+
+.glass-pill-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 6px;
+    background: rgba(10, 15, 30, 0.25);
+    backdrop-filter: blur(28px) saturate(210%) brightness(1.1);
+    -webkit-backdrop-filter: blur(28px) saturate(210%) brightness(1.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 9999px;
+    box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.4),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.25),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.glass-pill-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-item {
+    position: relative;
+    z-index: 2;
+    padding: 8px 18px;
+    font-family: var(--font-heading);
+    font-size: clamp(0.78rem, 1vw, 0.92rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: rgba(226, 232, 240, 0.85);
+    background: transparent;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-fluid);
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.nav-item:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+.nav-item.active {
+    color: #ffffff;
+    font-weight: 800;
+    text-shadow: 0 0 14px rgba(255, 255, 255, 0.9), 0 0 25px rgba(56, 189, 248, 0.6);
+}
+
+/* Dynamic Liquid Indicator Pill (Glowing Specular Glass Outline) */
+.nav-pill-indicator {
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(56, 189, 248, 0.12) 50%, rgba(255, 255, 255, 0.08) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 9999px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(56, 189, 248, 0.4),
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.75),
+                inset 0 -1px 1px rgba(56, 189, 248, 0.3);
+    transition: transform 0.65s cubic-bezier(0.34, 1.4, 0.64, 1), 
+                width 0.65s cubic-bezier(0.34, 1.4, 0.64, 1),
+                border-color 0.4s var(--ease-fluid),
+                box-shadow 0.4s var(--ease-fluid);
+    will-change: transform, width, filter;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Glowing Specular Border Reflection overlay on active indicator */
+.nav-pill-indicator::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(56, 189, 248, 0.6) 45%, rgba(255, 255, 255, 0.2) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+/* Match & Move Shimmer Wave across Nav Pill */
+.nav-pill-indicator::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 40%, 
+        rgba(56, 189, 248, 0.75) 50%, 
+        rgba(255, 255, 255, 0.4) 60%, 
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-fluid);
+}
+
+.nav-pill-indicator.matching-move-right::after,
+.nav-pill-indicator.matching-move-left::after {
+    opacity: 1;
+    animation: matchMovePillGlow 0.65s ease-in-out forwards;
+}
+
+@keyframes matchMovePillGlow {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(50%);
+    }
+}
+
+/* Match and Move Stretch & Bounce Effects */
+.nav-pill-indicator.matching-move-right {
+    animation: matchMoveStretchRight 0.65s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.nav-pill-indicator.matching-move-left {
+    animation: matchMoveStretchLeft 0.65s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+@keyframes matchMoveStretchRight {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
+    }
+    40% {
+        filter: drop-shadow(0 0 32px rgba(56, 189, 248, 0.85)) brightness(1.25);
+    }
+    100% {
+        filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.35));
+    }
+}
+
+@keyframes matchMoveStretchLeft {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.4));
+    }
+    40% {
+        filter: drop-shadow(0 0 32px rgba(56, 189, 248, 0.85)) brightness(1.25);
+    }
+    100% {
+        filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.35));
+    }
+}
+
+/* Native View Transitions Match and Move */
+::view-transition-old(shared-match-tab),
+::view-transition-new(shared-match-tab) {
+    animation-duration: 0.65s;
+    animation-timing-function: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+
+/* ==========================================================================
+   3D Card Stack Viewport & iOS 26 Motion Blur Cards
+   ========================================================================== */
+
+.card-stack-viewport {
+    position: relative;
+    width: 100%;
+    max-width: 1380px;
+    height: calc(100vh - 150px);
+    perspective: 1400px;
+    perspective-origin: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(1200px, 94vw);
+    height: min(660px, 74vh);
+    background: var(--bg-liquid-card);
+    backdrop-filter: blur(40px) saturate(230%) brightness(1.08);
+    -webkit-backdrop-filter: blur(40px) saturate(230%) brightness(1.08);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: clamp(20px, 3vw, 32px);
+    padding: clamp(24px, 4vw, 48px) clamp(28px, 4.5vw, 56px);
+    box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.75),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 0.25),
+                inset 0 -1.5px 1.5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform var(--transition-speed) var(--ease-fluid),
+                opacity var(--transition-speed) var(--ease-fluid),
+                filter var(--transition-speed) var(--ease-fluid),
+                border-color 0.4s var(--ease-fluid),
+                box-shadow 0.4s var(--ease-fluid);
+    will-change: transform, opacity, filter;
+    overflow: hidden;
+}
+
+/* Card Stack Transition Properties */
+
+/* Top Liquid Specular Reflection Edge */
+.slide-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.65) 25%, 
+        rgba(255, 255, 255, 0.95) 50%, 
+        rgba(255, 255, 255, 0.65) 75%, 
+        rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Sub-layer Ambient Liquid Glow */
+.slide-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.09), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.slide-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Active Center Card */
+.slide-card.active {
+    transform: translate3d(-50%, -50%, 0) scale(1) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    opacity: 1;
+    filter: blur(0px);
+    z-index: 30;
+    pointer-events: auto;
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+.slide-card.active:hover {
+    border-color: rgba(255, 255, 255, 0.38);
+    box-shadow: 0 40px 100px -15px rgba(0, 0, 0, 0.85),
+                0 0 50px rgba(56, 189, 248, 0.25),
+                inset 0 2px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Previous Card (Left Depth Peek) */
+.slide-card.prev {
+    transform: translate3d(calc(-50% - clamp(180px, 22vw, 320px)), -50%, -140px) scale(0.86) rotateY(8deg);
+    opacity: 0.48;
+    filter: blur(5px);
+    z-index: 20;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Next Card (Right Depth Peek) */
+.slide-card.next {
+    transform: translate3d(calc(-50% + clamp(180px, 22vw, 320px)), -50%, -140px) scale(0.86) rotateY(-8deg);
+    opacity: 0.48;
+    filter: blur(5px);
+    z-index: 20;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Far Previous Card */
+.slide-card.far-prev {
+    transform: translate3d(calc(-50% - clamp(320px, 38vw, 520px)), -50%, -260px) scale(0.74) rotateY(14deg);
+    opacity: 0.18;
+    filter: blur(10px);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Far Next Card */
+.slide-card.far-next {
+    transform: translate3d(calc(-50% + clamp(320px, 38vw, 520px)), -50%, -260px) scale(0.74) rotateY(-14deg);
+    opacity: 0.18;
+    filter: blur(10px);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Hidden Center Depth Stack Cards (All offscreen past & future cards collapse in center depth) */
+.slide-card.hidden,
+.slide-card.hidden-left,
+.slide-card.hidden-right {
+    transform: translate3d(-50%, -50%, -420px) scale(0.6) rotateY(0deg);
+    opacity: 0;
+    filter: blur(20px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.slide-card.prev:hover,
+.slide-card.next:hover {
+    opacity: 0.8;
+    filter: blur(1.5px);
+}
+
+/* ==========================================================================
+   3D Slide In & Slide Out Motion Engine (iOS 26 Physics Spring & Motion Blur)
+   ========================================================================== */
+
+/* Incoming Slide - Moving Next (From Right Stack to Center) */
+.slide-card.slide-in-next {
+    animation: slideInFromRight 0.85s var(--ease-spring) forwards;
+}
+
+/* Incoming Slide - Moving Prev (From Left Stack to Center) */
+.slide-card.slide-in-prev {
+    animation: slideInFromLeft 0.85s var(--ease-spring) forwards;
+}
+
+/* Outgoing Slide - Moving Next (From Center to Left Stack) */
+.slide-card.slide-out-next {
+    animation: slideOutToLeft 0.85s var(--ease-spring) forwards;
+}
+
+/* Outgoing Slide - Moving Prev (From Center to Right Stack) */
+.slide-card.slide-out-prev {
+    animation: slideOutToRight 0.85s var(--ease-spring) forwards;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translate3d(calc(-50% + clamp(240px, 32vw, 500px)), -50%, -180px) scale(0.8) rotateY(-14deg);
+        opacity: 0.3;
+        filter: blur(12px) brightness(1.1);
+    }
+    75% {
+        transform: translate3d(calc(-50% - 8px), -50%, 8px) scale(1.015) rotateY(1deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(1) rotateY(0deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translate3d(calc(-50% - clamp(240px, 32vw, 500px)), -50%, -180px) scale(0.8) rotateY(14deg);
+        opacity: 0.3;
+        filter: blur(12px) brightness(1.1);
+    }
+    75% {
+        transform: translate3d(calc(-50% + 8px), -50%, 8px) scale(1.015) rotateY(-1deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    100% {
+        transform: translate3d(-50%, -50%, 0) scale(1) rotateY(0deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1) rotateY(0deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    100% {
+        transform: translate3d(calc(-50% - clamp(180px, 22vw, 320px)), -50%, -140px) scale(0.86) rotateY(8deg);
+        opacity: 0.48;
+        filter: blur(5px);
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translate3d(-50%, -50%, 0) scale(1) rotateY(0deg);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    100% {
+        transform: translate3d(calc(-50% + clamp(180px, 22vw, 320px)), -50%, -140px) scale(0.86) rotateY(-8deg);
+        opacity: 0.48;
+        filter: blur(5px);
+    }
+}
+
+/* Key Content Tab Morphing Transition between slides */
+.slide-card.slide-out-next .next-slide-preview {
+    animation: keyTabMorphOutNext 0.75s var(--ease-spring) forwards;
+}
+
+.slide-card.slide-in-next .frosted-glass-badge {
+    animation: keyBadgeMorphInNext 0.85s var(--ease-spring) 0.04s both;
+}
+
+.slide-card.slide-in-next .next-slide-preview {
+    animation: keyTabMorphInNext 0.85s var(--ease-spring) 0.08s both;
+}
+
+.slide-card.slide-out-prev .next-slide-preview {
+    animation: keyTabMorphOutPrev 0.75s var(--ease-spring) forwards;
+}
+
+.slide-card.slide-in-prev .frosted-glass-badge {
+    animation: keyBadgeMorphInPrev 0.85s var(--ease-spring) 0.04s both;
+}
+
+.slide-card.slide-in-prev .next-slide-preview {
+    animation: keyTabMorphInPrev 0.85s var(--ease-spring) 0.08s both;
+}
+
+@keyframes keyTabMorphOutNext {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    45% {
+        transform: translate3d(-70px, -12px, 50px) scale(1.18);
+        opacity: 0.95;
+        border-color: rgba(56, 189, 248, 0.85);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.8), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        transform: translate3d(-200px, -24px, -40px) scale(0.65);
+        opacity: 0;
+        box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+    }
+}
+
+@keyframes keyBadgeMorphInNext {
+    0% {
+        transform: translate3d(140px, 16px, 70px) scale(1.22);
+        opacity: 0;
+        border-color: rgba(56, 189, 248, 0.85);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.8);
+    }
+    60% {
+        transform: translate3d(-4px, -1px, 10px) scale(1.03);
+        opacity: 1;
+        box-shadow: 0 0 22px rgba(56, 189, 248, 0.45);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+        box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.4), 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@keyframes keyTabMorphInNext {
+    0% {
+        transform: translate3d(160px, 16px, 70px) scale(1.22);
+        opacity: 0;
+        border-color: rgba(56, 189, 248, 0.85);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.8);
+    }
+    70% {
+        transform: translate3d(-3px, -1px, 10px) scale(1.02);
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+}
+
+@keyframes keyTabMorphOutPrev {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+    }
+    45% {
+        transform: translate3d(70px, -12px, 50px) scale(1.18);
+        opacity: 0.95;
+        border-color: rgba(56, 189, 248, 0.85);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.8);
+    }
+    100% {
+        transform: translate3d(200px, -24px, -40px) scale(0.65);
+        opacity: 0;
+    }
+}
+
+@keyframes keyBadgeMorphInPrev {
+    0% {
+        transform: translate3d(-140px, 16px, 70px) scale(1.22);
+        opacity: 0;
+        border-color: rgba(56, 189, 248, 0.85);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.8);
+    }
+    60% {
+        transform: translate3d(4px, -1px, 10px) scale(1.03);
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes keyTabMorphInPrev {
+    0% {
+        transform: translate3d(-160px, 16px, 70px) scale(1.22);
+        opacity: 0;
+        border-color: rgba(56, 189, 248, 0.85);
+        box-shadow: 0 0 40px rgba(56, 189, 248, 0.8);
+    }
+    70% {
+        transform: translate3d(3px, -1px, 10px) scale(1.02);
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   Staggered Inner Content Animations (Re-triggered on every slide change)
+   ========================================================================== */
+
+.slide-card.content-animating .frosted-glass-badge {
+    animation: contentSlideInHead 0.55s var(--ease-fluid) 0.05s both;
+}
+
+.slide-card.content-animating .slide-title,
+.slide-card.content-animating .home-title,
+.slide-card.content-animating .team-center-title {
+    animation: contentSlideInTitle 0.65s var(--ease-fluid) 0.1s both;
+}
+
+.slide-card.content-animating .home-subtitle {
+    animation: contentSlideInSub 0.65s var(--ease-fluid) 0.18s both;
+}
+
+.slide-card.content-animating .sub-glass-card,
+.slide-card.content-animating .step-card,
+.slide-card.content-animating .feature-card,
+.slide-card.content-animating .app-card,
+.slide-card.content-animating .team-card,
+.slide-card.content-animating .conclusion-card,
+.slide-card.content-animating .adv-card,
+.slide-card.content-animating .lim-card,
+.slide-card.content-animating .comparison-container,
+.slide-card.content-animating .callout-info-box,
+.slide-card.content-animating .accent-bar-card,
+.slide-card.content-animating .logo-liquid-glass-card {
+    animation: contentSlideInCard 0.65s var(--ease-fluid) both;
+}
+
+@keyframes contentSlideInHead {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes contentSlideInTitle {
+    0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes contentSlideInSub {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes contentSlideInCard {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Stagger Delays for Grid Children */
+.slide-card.content-animating .cards-2-col > *:nth-child(1),
+.slide-card.content-animating .cards-4-col > *:nth-child(1),
+.slide-card.content-animating .grid-8-app > *:nth-child(1),
+.slide-card.content-animating .team-grid-4 > *:nth-child(1),
+.slide-card.content-animating .conclusion-top-3 > *:nth-child(1),
+.slide-card.content-animating .adv-lim-columns > *:nth-child(1) { animation-delay: 0.12s; }
+
+.slide-card.content-animating .cards-2-col > *:nth-child(2),
+.slide-card.content-animating .cards-4-col > *:nth-child(2),
+.slide-card.content-animating .grid-8-app > *:nth-child(2),
+.slide-card.content-animating .team-grid-4 > *:nth-child(2),
+.slide-card.content-animating .conclusion-top-3 > *:nth-child(2),
+.slide-card.content-animating .adv-lim-columns > *:nth-child(2) { animation-delay: 0.18s; }
+
+.slide-card.content-animating .cards-4-col > *:nth-child(3),
+.slide-card.content-animating .grid-8-app > *:nth-child(3),
+.slide-card.content-animating .team-grid-4 > *:nth-child(3),
+.slide-card.content-animating .conclusion-top-3 > *:nth-child(3) { animation-delay: 0.24s; }
+
+.slide-card.content-animating .cards-4-col > *:nth-child(4),
+.slide-card.content-animating .grid-8-app > *:nth-child(4),
+.slide-card.content-animating .team-grid-4 > *:nth-child(4) { animation-delay: 0.30s; }
+
+.slide-card.content-animating .grid-8-app > *:nth-child(5) { animation-delay: 0.34s; }
+.slide-card.content-animating .grid-8-app > *:nth-child(6) { animation-delay: 0.38s; }
+.slide-card.content-animating .grid-8-app > *:nth-child(7) { animation-delay: 0.42s; }
+.slide-card.content-animating .grid-8-app > *:nth-child(8) { animation-delay: 0.46s; }
+
+/* Inner Slide Content Header */
+.slide-header {
+    margin-bottom: clamp(16px, 3vh, 28px);
+}
+
+.slide-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Next Up Slide Key Content Preview Chip */
+.next-slide-preview {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    font-family: var(--font-heading);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.35s var(--ease-fluid);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+    user-select: none;
+    z-index: 10;
+}
+
+.next-slide-preview:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(56, 189, 248, 0.55);
+    transform: translateX(3px) translateY(-1px);
+    box-shadow: 0 0 22px rgba(56, 189, 248, 0.35), inset 0 1.5px 1px rgba(255, 255, 255, 0.4);
+}
+
+.next-slide-preview .preview-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: var(--accent-blue);
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+.next-slide-preview .preview-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(240, 246, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.next-slide-preview .preview-arrow {
+    color: var(--accent-blue);
+    transition: transform 0.3s var(--ease-fluid);
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
+}
+
+.next-slide-preview:hover .preview-arrow {
+    transform: translateX(4px);
+    color: #ffffff;
+}
+
+/* Frosted Glass Section Badges */
+.frosted-glass-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 15px;
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(210%);
+    -webkit-backdrop-filter: blur(20px) saturate(210%);
+    border: none;
+    border-radius: 9999px;
+    box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.4),
+                0 6px 20px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    width: fit-content;
+}
+
+.frosted-glass-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 10px var(--accent-blue);
+    flex-shrink: 0;
+}
+
+.slide-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 3.4vw, 2.75rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 30%, #e2e8f0 60%, #bae6fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.3)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.75));
+    position: relative;
+}
+
+/* ==========================================================================
+   Slide Specific Liquid Glass Layouts
+   ========================================================================== */
+
+/* SLIDE 1: Home */
+.slide-home-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(20px, 4vw, 40px);
+    align-items: center;
+    height: 100%;
+}
+
+.home-left {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vh, 18px);
+}
+
+.home-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3.2rem, 6.2vw, 5.2rem);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 25%, #e2e8f0 45%, #7dd3fc 65%, #ffffff 85%, #e0f2fe 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: liquidGlassSheen 7s ease-in-out infinite alternate, liquidGlowPulse 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.4)) drop-shadow(0 10px 30px rgba(0,0,0,0.85));
+}
+
+.home-subtitle {
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+    font-weight: 400;
+    color: rgba(240, 246, 255, 0.95);
+    line-height: 1.55;
+    max-width: 500px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.home-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-liquid-glass-card {
+    position: relative;
+    width: clamp(220px, 25vw, 330px);
+    height: clamp(220px, 25vw, 330px);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1.5px solid rgba(255, 255, 255, 0.28);
+    border-radius: clamp(28px, 4vw, 44px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6),
+                inset 0 2px 2px rgba(255, 255, 255, 0.4),
+                inset 0 -2px 2px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-fluid), box-shadow 0.4s var(--ease-fluid);
+}
+
+.logo-liquid-glass-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.7),
+                0 0 40px rgba(255, 255, 255, 0.18),
+                inset 0 2px 2px rgba(255, 255, 255, 0.5);
+}
+
+.liquid-reflection {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+}
+
+.notebooklm-icon-svg {
+    width: clamp(140px, 16vw, 200px);
+    height: clamp(140px, 16vw, 200px);
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+}
+
+/* SLIDE 2: What */
+.cards-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2.5vw, 28px);
+    height: calc(100% - 60px);
+}
+
+.sub-glass-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 24px;
+    padding: clamp(24px, 3vw, 38px);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.35s var(--ease-fluid);
+    overflow: hidden;
+}
+
+.sub-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.sub-glass-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-4px);
+}
+
+.card-title-lg {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.2vw, 2.1rem);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 60%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
+}
+
+.card-text {
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    color: rgba(226, 232, 240, 0.93);
+    line-height: 1.6;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/* SLIDE 3, 4, 5: Responsive Grids */
+.cards-4-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(12px, 1.8vw, 20px);
+    height: calc(100% - 60px);
+}
+
+.step-card, .feature-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 24px;
+    padding: clamp(20px, 2vw, 30px) clamp(16px, 1.8vw, 24px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    transition: all 0.35s var(--ease-fluid);
+    overflow: hidden;
+}
+
+.step-card::before, .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.step-card:hover {
+    border-color: var(--accent-emerald);
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(16, 185, 129, 0.2);
+}
+
+.feature-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.card-icon-wrap {
+    width: clamp(40px, 4vw, 52px);
+    height: clamp(40px, 4vw, 52px);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-emerald);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
+    flex-shrink: 0;
+}
+
+.card-step-num {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 1.6vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 60%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6));
+}
+
+.step-card-text {
+    font-size: clamp(0.88rem, 1.1vw, 1.02rem);
+    color: rgba(226, 232, 240, 0.92);
+    line-height: 1.55;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.feature-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.15rem, 1.5vw, 1.48rem);
+    font-weight: 800;
+    line-height: 1.25;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 60%, #e2e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.15));
+}
+
+/* SLIDE 6: Comparison Table */
+.comparison-container {
+    background: rgba(12, 18, 34, 0.5);
+    backdrop-filter: blur(30px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 28px;
+    padding: clamp(12px, 2vw, 24px);
+    height: calc(100% - 60px);
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.comparison-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: separate;
+    border-spacing: clamp(6px, 1vw, 12px) 0;
+}
+
+.comparison-table th {
+    font-family: var(--font-heading);
+    font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+    font-weight: 800;
+    color: #ffffff;
+    padding: clamp(8px, 1.2vh, 14px) clamp(10px, 1.5vw, 18px);
+    text-align: left;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.comparison-table td {
+    padding: clamp(8px, 1.2vh, 14px) clamp(10px, 1.5vw, 18px);
+    font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+    color: rgba(226, 232, 240, 0.92);
+    vertical-align: middle;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.col-feature {
+    width: 25%;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.col-notebooklm {
+    background: rgba(28, 40, 68, 0.85) !important;
+    backdrop-filter: blur(20px);
+    border: 2px solid var(--accent-blue) !important;
+    border-radius: 20px;
+    color: #ffffff !important;
+    font-weight: 700;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.25),
+                inset 0 1.5px 1px rgba(255, 255, 255, 0.4);
+}
+
+.highlight-header {
+    background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.5));
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+}
+
+.status-badge.yes { color: #34d399; text-shadow: 0 0 10px rgba(52, 211, 153, 0.4); }
+.status-badge.no { color: #f87171; text-shadow: 0 0 10px rgba(248, 113, 113, 0.4); }
+.status-badge.partial { color: #cbd5e1; }
+
+.dot-indicator {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px currentColor;
+}
+
+.dot-low { background-color: #10b981; }
+.dot-medium { background-color: #f59e0b; }
+.dot-high { background-color: #ef4444; }
+
+/* SLIDE 7: Applications */
+.grid-8-app {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: clamp(10px, 1.5vw, 16px);
+    height: calc(100% - 60px);
+}
+
+.app-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 18px;
+    padding: clamp(12px, 1.5vw, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    transition: all 0.35s var(--ease-fluid);
+    overflow: hidden;
+}
+
+.app-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+.app-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.28);
+    transform: translateY(-4px);
+}
+
+.app-card-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.02rem, 1.2vw, 1.2rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 60%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.app-card-desc {
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
+    color: rgba(226, 232, 240, 0.9);
+    line-height: 1.4;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* SLIDE 8: Limitations */
+.limitations-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vh, 20px);
+    height: calc(100% - 60px);
+}
+
+.adv-lim-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(14px, 2vw, 24px);
+    flex: 1;
+}
+
+.adv-card, .lim-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 22px;
+    padding: clamp(18px, 2.5vw, 28px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.section-head-green {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #a7f3d0 0%, #34d399 50%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(52, 211, 153, 0.45));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-head-amber {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fef08a 0%, #fbbf24 50%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(251, 191, 36, 0.45));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1.2vh, 12px);
+}
+
+.bullet-list li {
+    font-size: clamp(0.92rem, 1.1vw, 1.08rem);
+    color: rgba(226, 232, 240, 0.93);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.callout-info-box {
+    background: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    border-radius: 18px;
+    padding: clamp(12px, 1.8vw, 18px) clamp(16px, 2vw, 24px);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #f1f5f9;
+    font-size: clamp(0.92rem, 1.1vw, 1.1rem);
+    line-height: 1.45;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4), inset 0 1.5px 1px rgba(255,255,255,0.3);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.callout-info-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-blue);
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.5));
+}
+
+/* SLIDE 9: Conclusion */
+.conclusion-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 2vh, 20px);
+    height: calc(100% - 60px);
+}
+
+.conclusion-top-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.8vw, 20px);
+    flex: 1;
+}
+
+.conclusion-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 22px;
+    padding: clamp(18px, 2.2vw, 28px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.conclusion-bottom-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(12px, 1.8vw, 20px);
+}
+
+.accent-bar-card {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 18px;
+    padding: clamp(14px, 1.8vw, 20px) clamp(18px, 2vw, 24px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.accent-bar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+}
+
+.accent-bar-card.green::before { background: #34d399; box-shadow: 0 0 12px #34d399; }
+.accent-bar-card.blue::before { background: #38bdf8; box-shadow: 0 0 12px #38bdf8; }
+
+.accent-card-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 60%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+.accent-card-desc {
+    font-size: clamp(0.88rem, 1.05vw, 1rem);
+    color: rgba(226, 232, 240, 0.92);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* SLIDE 10: Team */
+.team-center-title {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 5.5vw, 4.5rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin-bottom: clamp(12px, 2vh, 24px);
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 35%, #e2e8f0 65%, #7dd3fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.35)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.8));
+}
+
+.team-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(14px, 2vw, 24px);
+}
+
+.team-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(28px);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 24px;
+    padding: clamp(20px, 2.5vw, 34px) clamp(14px, 1.8vw, 24px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    transition: all 0.35s var(--ease-fluid);
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%; height: 4px;
+    background: var(--accent-blue);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 0 12px var(--accent-blue);
+}
+
+.team-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-5px);
+}
+
+.team-avatar-icon {
+    width: clamp(52px, 5vw, 68px);
+    height: clamp(52px, 5vw, 68px);
+    border-radius: 50%;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-blue);
+    box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+}
+
+.team-role {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+}
+
+.team-name {
+    font-family: var(--font-heading);
+    font-size: clamp(1.1rem, 1.4vw, 1.38rem);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 60%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.7));
+}
+
+/* ==========================================================================
+   Bottom Controls Bar
+   ========================================================================== */
+
+.bottom-controls {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 20px);
+    background: rgba(10, 15, 30, 0.65);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid var(--border-liquid-subtle);
+    border-radius: 9999px;
+    padding: 6px 20px;
+    margin-bottom: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 1.5px 0 rgba(255, 255, 255, 0.2);
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    font-family: var(--font-heading);
+    color: rgba(226, 232, 240, 0.85);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.25s var(--ease-fluid);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.control-btn:hover {
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 18px rgba(56, 189, 248, 0.5);
+    transform: translateY(-1px);
+}
+
+.slide-counter {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+    letter-spacing: 0.08em;
+}
+
+.keyboard-hints {
+    font-size: 0.8rem;
+    color: rgba(148, 163, 184, 0.85);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.kbd-tag {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    padding: 2px 7px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints for Tablets & Laptops
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .cards-4-col {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .grid-8-app {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .team-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conclusion-top-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .slide-home-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .home-subtitle {
+        margin: 0 auto;
+    }
+
+    .home-right {
+        margin-top: 10px;
+    }
+
+    .cards-2-col, .adv-lim-columns, .conclusion-bottom-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-8-app {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .conclusion-top-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .keyboard-hints {
+        display: none;
+    }
+}
+

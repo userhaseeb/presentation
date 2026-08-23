@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NotebookLM - Premium AI Presentation</title>
+    <meta name="description"
+        content="NotebookLM: Your personalized AI-powered research and learning assistant presentation with modern 3D card stack and nebula background.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Animated Canvas Nebula Background -->
+    <canvas id="nebula-canvas"></canvas>
+
+    <div class="presentation-app">
+
+        <!-- Glassmorphism Top Pill Navigation -->
+        <div class="nav-container">
+            <nav class="glass-pill-nav" id="glass-nav" aria-label="Presentation Slide Navigation">
+                <div class="nav-pill-indicator" id="nav-indicator"></div>
+                <button class="nav-item active" data-index="0">Home</button>
+                <button class="nav-item" data-index="1">What</button>
+                <button class="nav-item" data-index="2">How</button>
+                <button class="nav-item" data-index="3">Features</button>
+                <button class="nav-item" data-index="4">Benefits</button>
+                <button class="nav-item" data-index="5">Comparison</button>
+                <button class="nav-item" data-index="6">Applications</button>
+                <button class="nav-item" data-index="7">Limitations</button>
+                <button class="nav-item" data-index="8">Conclusion</button>
+                <button class="nav-item" data-index="9">Team</button>
+            </nav>
+        </div>
+
+        <!-- 3D Card Stack Viewport Container -->
+        <main class="card-stack-viewport" id="card-viewport">
+
+            <!-- SLIDE 1: HOME -->
+            <section class="slide-card active" data-slide="0" aria-label="Slide 1: Home">
+                <div class="slide-home-content">
+                    <div class="home-left">
+                        <div class="frosted-glass-badge">PRESENTATION</div>
+                        <h1 class="home-title">NotebookLM</h1>
+                        <p class="home-subtitle">Your personalized AI-powered research and learning assistant.</p>
+                        <div class="next-slide-preview" data-next-target="1" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">AI-Powered Research Assistant</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="home-right">
+                        <div class="logo-liquid-glass-card">
+                            <div class="liquid-reflection"></div>
+                            <svg class="notebooklm-icon-svg" viewBox="0 0 200 200" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#FFFFFF" />
+                                        <stop offset="100%" stop-color="#E2E8F0" />
+                                    </linearGradient>
+                                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000"
+                                            flood-opacity="0.4" />
+                                    </filter>
+                                </defs>
+                                <!-- Outer Arch -->
+                                <path d="M 40 160 V 90 A 60 60 0 0 1 160 90 V 160" stroke="url(#logo-grad)"
+                                    stroke-width="16" stroke-linecap="round" filter="url(#glow)" />
+                                <!-- Middle Arch -->
+                                <path d="M 68 160 V 104 A 32 32 0 0 1 132 104 V 160" stroke="url(#logo-grad)"
+                                    stroke-width="16" stroke-linecap="round" filter="url(#glow)" />
+                                <!-- Inner Arch -->
+                                <path d="M 96 160 V 122 A 4 4 0 0 1 104 122 V 160" stroke="url(#logo-grad)"
+                                    stroke-width="14" stroke-linecap="round" filter="url(#glow)" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 2: WHAT -->
+            <section class="slide-card next" data-slide="1" aria-label="Slide 2: What is NotebookLM">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">OVERVIEW</div>
+                        <div class="next-slide-preview" data-next-target="2" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">How NotebookLM Works</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">AI-Powered Research &amp; Learning Assistant</h2>
+                </header>
+                <div class="cards-2-col">
+                    <div class="sub-glass-card">
+                        <h3 class="card-title-lg">Source-Grounded AI</h3>
+                        <p class="card-text">Launched in 2023, NotebookLM is Google's AI-powered research assistant.</p>
+                        <p class="card-text">It answers questions using only your uploaded sources — not the open
+                            internet.</p>
+                    </div>
+                    <div class="sub-glass-card">
+                        <h3 class="card-title-lg">Why Google Built It</h3>
+                        <p class="card-text">To solve AI hallucination by grounding responses in verified documents,
+                            making it ideal for research, study, and professional analysis.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 3: HOW -->
+            <section class="slide-card far-next" data-slide="2" aria-label="Slide 3: How NotebookLM Works">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">WORKFLOW</div>
+                        <div class="next-slide-preview" data-next-target="3" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">Core Features &amp; Capabilities</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">How NotebookLM Works</h2>
+                </header>
+                <div class="cards-4-col">
+                    <div class="step-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+                                <path d="M12 12v9" />
+                                <path d="m16 16-4-4-4 4" />
+                            </svg>
+                        </div>
+                        <h3 class="card-step-num">01. Upload</h3>
+                        <p class="step-card-text">Add PDFs, Google Docs, webpages, and raw notes to your notebook.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                            </svg>
+                        </div>
+                        <h3 class="card-step-num">02. Analyze</h3>
+                        <p class="step-card-text">AI automatically processes and indexes your content to build
+                            understanding.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                                <line x1="12" y1="17" x2="12.01" y2="17" />
+                            </svg>
+                        </div>
+                        <h3 class="card-step-num">03. Ask</h3>
+                        <p class="step-card-text">Pose complex questions and query your documents directly.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                            </svg>
+                        </div>
+                        <h3 class="card-step-num">04. Answer</h3>
+                        <p class="step-card-text">Get detailed responses grounded in your sources with precise
+                            citations.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 4: FEATURES -->
+            <section class="slide-card hidden" data-slide="3" aria-label="Slide 4: Features">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">CAPABILITIES</div>
+                        <div class="next-slide-preview" data-next-target="4" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">Who Benefits from NotebookLM?</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">Features</h2>
+                </header>
+                <div class="cards-4-col">
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                                <line x1="10" y1="9" x2="8" y2="9" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">AI Summaries &amp; Study Guides</h3>
+                        <p class="step-card-text">Auto-generates concise summaries, FAQs, and study guides from uploaded
+                            documents.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                                <path d="m9 14 2 2 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Source-Based Q&amp;A</h3>
+                        <p class="step-card-text">Ask any question and get answers grounded in your documents, with
+                            citations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                                <path
+                                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Audio Overviews</h3>
+                        <p class="step-card-text">Converts documents into AI-generated podcast-style audio for on-the-go
+                            learning.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                <polyline points="2 17 12 22 22 17" />
+                                <polyline points="2 12 12 17 22 12" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Multi-Doc Analysis</h3>
+                        <p class="step-card-text">Understands and connects information across multiple uploaded sources
+                            simultaneously.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: BENEFITS -->
+            <section class="slide-card hidden" data-slide="4" aria-label="Slide 5: Who Benefits from NotebookLM">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">VALUE PROPOSITION</div>
+                        <div class="next-slide-preview" data-next-target="5" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">NotebookLM vs. Other AI Tools</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">Who Benefits from NotebookLM?</h2>
+                </header>
+                <div class="cards-4-col">
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Students</h3>
+                        <p class="step-card-text">Faster revision, AI study guides, and exam prep from lecture notes.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Teachers</h3>
+                        <p class="step-card-text">Build lesson plans, quizzes, and reading summaries in minutes.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55A2 2 0 0 0 6.51 23.5h10.98a2 2 0 0 0 1.79-2.95l-5.069-10.127A2 2 0 0 1 14 9.527V2" />
+                                <line x1="8.5" y1="2" x2="15.5" y2="2" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Researchers</h3>
+                        <p class="step-card-text">Analyze papers, extract key findings, and generate literature reviews.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">Professionals</h3>
+                        <p class="step-card-text">Summarize reports, contracts, and meeting notes with accuracy.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: COMPARISON -->
+            <section class="slide-card hidden" data-slide="5" aria-label="Slide 6: NotebookLM vs Other AI Tools">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">BENCHMARK</div>
+                        <div class="next-slide-preview" data-next-target="6" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">Real-World Applications</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">NotebookLM vs. Other AI Tools</h2>
+                </header>
+                <div class="comparison-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th class="col-feature">Feature</th>
+                                <th class="col-notebooklm highlight-header">NotebookLM</th>
+                                <th>ChatGPT</th>
+                                <th>Google Gemini</th>
+                                <th>Microsoft Copilot</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="col-feature">Source-Based Answers</td>
+                                <td class="col-notebooklm"><span class="status-badge yes">✓ Yes</span></td>
+                                <td><span class="status-badge no">✗ No</span></td>
+                                <td><span class="status-badge partial">Partial</span></td>
+                                <td><span class="status-badge partial">Partial</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-feature">File Analysis</td>
+                                <td class="col-notebooklm"><span class="status-badge yes">✓ Strong</span></td>
+                                <td><span class="status-badge yes">✓ Yes</span></td>
+                                <td><span class="status-badge yes">✓ Yes</span></td>
+                                <td><span class="status-badge yes">✓ Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-feature">Citations</td>
+                                <td class="col-notebooklm"><span class="status-badge yes">✓ Built-in</span></td>
+                                <td><span class="status-badge no">✗ No</span></td>
+                                <td><span class="status-badge partial">Partial</span></td>
+                                <td><span class="status-badge yes">✓ Yes</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-feature">Hallucination Risk</td>
+                                <td class="col-notebooklm"><span class="status-badge"><span
+                                            class="dot-indicator dot-low"></span> Low</span></td>
+                                <td><span class="status-badge"><span class="dot-indicator dot-high"></span> High</span>
+                                </td>
+                                <td><span class="status-badge"><span class="dot-indicator dot-medium"></span>
+                                        Medium</span></td>
+                                <td><span class="status-badge"><span class="dot-indicator dot-medium"></span>
+                                        Medium</span></td>
+                            </tr>
+                            <tr>
+                                <td class="col-feature">Best For</td>
+                                <td class="col-notebooklm" style="color:#34d399; font-weight:700;">Research &amp; Study
+                                </td>
+                                <td>General Chat</td>
+                                <td>Multimodal Tasks</td>
+                                <td>Workplace AI</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SLIDE 7: APPLICATIONS -->
+            <section class="slide-card hidden" data-slide="6" aria-label="Slide 7: Real-World Applications">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">USE CASES</div>
+                        <div class="next-slide-preview" data-next-target="7" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">Advantages &amp; Limitations</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">Real-World Applications</h2>
+                </header>
+                <div class="grid-8-app">
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M2 18h20" />
+                                <path d="M4 18v-4a8 8 0 1 1 16 0v4" />
+                                <circle cx="12" cy="7" r="1" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Engineering Education</h3>
+                        <p class="app-card-desc">Lecture notes and lab reports.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-0.5-5" />
+                                <path d="M6 6h10" />
+                                <path d="M6 10h10" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Research Papers</h3>
+                        <p class="app-card-desc">Literature reviews and paper analysis.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+                                <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Project Docs</h3>
+                        <p class="app-card-desc">Technical specifications and summaries.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Exam Prep</h3>
+                        <p class="app-card-desc">Custom study guides and key FAQs.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10" />
+                                <line x1="12" y1="20" x2="12" y2="4" />
+                                <line x1="6" y1="20" x2="6" y2="14" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Business Reports</h3>
+                        <p class="app-card-desc">Executive summaries and briefs.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                                <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                                <path d="M7 21h10" />
+                                <path d="M12 3v18" />
+                                <path d="M3 7h18" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Legal Documents</h3>
+                        <p class="app-card-desc">In-depth clause analysis and reviews.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Medical Literature</h3>
+                        <p class="app-card-desc">Research synthesis and findings.</p>
+                    </div>
+                    <div class="app-card">
+                        <div class="card-icon-wrap" style="width:36px;height:36px;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 1 0 7.75" />
+                            </svg>
+                        </div>
+                        <h3 class="app-card-title">Team Collaboration</h3>
+                        <p class="app-card-desc">Shared team knowledge bases.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 8: LIMITATIONS -->
+            <section class="slide-card hidden" data-slide="7" aria-label="Slide 8: Advantages &amp; Limitations">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">CONSIDERATIONS</div>
+                        <div class="next-slide-preview" data-next-target="8" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">Conclusion &amp; Key Takeaways</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">Advantages &amp; Limitations</h2>
+                </header>
+                <div class="limitations-wrap">
+                    <div class="adv-lim-columns">
+                        <div class="adv-card">
+                            <h3 class="section-head-green">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                                    <polyline points="22 4 12 14.01 9 11.01" />
+                                </svg>
+                                Advantages
+                            </h3>
+                            <ul class="bullet-list">
+                                <li><span style="color:#34d399">✓</span> Accurate, source-backed answers</li>
+                                <li><span style="color:#34d399">✓</span> Easy multi-document analysis</li>
+                                <li><span style="color:#34d399">✓</span> AI-generated notes and summaries</li>
+                                <li><span style="color:#34d399">✓</span> Significant time savings</li>
+                                <li><span style="color:#34d399">✓</span> Better knowledge organization</li>
+                                <li><span style="color:#34d399">✓</span> Audio Overviews for learning on the go</li>
+                            </ul>
+                        </div>
+                        <div class="lim-card">
+                            <h3 class="section-head-amber">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <path
+                                        d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                                Limitations
+                            </h3>
+                            <ul class="bullet-list">
+                                <li><span style="color:#fbbf24">-</span> Depends entirely on uploaded sources</li>
+                                <li><span style="color:#fbbf24">-</span> Limited value without documents</li>
+                                <li><span style="color:#fbbf24">-</span> Internet knowledge is secondary</li>
+                                <li><span style="color:#fbbf24">-</span> Requires good-quality input files</li>
+                                <li><span style="color:#fbbf24">-</span> May miss context outside sources</li>
+                                <li><span style="color:#fbbf24">-</span> Audio feature limited to English (2026)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="callout-info-box">
+                        <svg class="callout-info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="16" x2="12" y2="12" />
+                            <line x1="12" y1="8" x2="12.01" y2="8" />
+                        </svg>
+                        <p>NotebookLM is most powerful when you have quality documents to upload. It is a research
+                            companion, not a replacement for critical thinking.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: CONCLUSION -->
+            <section class="slide-card hidden" data-slide="8" aria-label="Slide 9: Conclusion &amp; Key Takeaways">
+                <header class="slide-header">
+                    <div class="slide-header-top">
+                        <div class="frosted-glass-badge">SUMMARY</div>
+                        <div class="next-slide-preview" data-next-target="9" title="Go to Next Slide">
+                            <span class="preview-label">NEXT UP</span>
+                            <span class="preview-text">Our Team &amp; Contributors</span>
+                            <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14" />
+                                <path d="m12 5 7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="slide-title">Conclusion &amp; Key Takeaways</h2>
+                </header>
+                <div class="conclusion-wrap">
+                    <div class="conclusion-top-3">
+                        <div class="conclusion-card">
+                            <div class="card-icon-wrap" style="color:#34d399">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" />
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Grounded AI</h3>
+                            <p class="step-card-text">NotebookLM proves AI is most valuable when anchored to verified
+                                sources — reducing errors and building trust.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <div class="card-icon-wrap" style="color:#34d399">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <circle cx="12" cy="12" r="6" />
+                                    <circle cx="12" cy="12" r="2" />
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">Built for Research</h3>
+                            <p class="step-card-text">From exam prep to thesis research, NotebookLM accelerates every
+                                stage of the learning journey for academic minds.</p>
+                        </div>
+                        <div class="conclusion-card">
+                            <div class="card-icon-wrap" style="color:#34d399">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path
+                                        d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.71 1.1-1.6 1.1-2.5a2.5 2.5 0 0 0-2.5-2.5c-.9 0-1.79.39-2.6 1.1z" />
+                                    <path
+                                        d="M12 10l-2 5 5-2 6.5-6.5a2.121 2.121 0 0 0 0-3 2.121 2.121 0 0 0-3 0L12 10z" />
+                                </svg>
+                            </div>
+                            <h3 class="feature-title">2026 Features</h3>
+                            <p class="step-card-text">Enhanced multi-modal analysis, improved Audio Overviews, deeper
+                                Workspace integration, and expanded language support.</p>
+                        </div>
+                    </div>
+                    <div class="conclusion-bottom-2">
+                        <div class="accent-bar-card green">
+                            <h4 class="accent-card-title">Thank You</h4>
+                            <p class="accent-card-desc">We appreciate your attention and time.</p>
+                        </div>
+                        <div class="accent-bar-card blue">
+                            <h4 class="accent-card-title">Questions &amp; Discussion</h4>
+                            <p class="accent-card-desc">Open floor for Q&amp;A — let's discuss!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: TEAM -->
+            <section class="slide-card hidden" data-slide="9" aria-label="Slide 10: Thank You - Team Members">
+                <div
+                    style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 6px;">
+                    <div class="frosted-glass-badge">CONTRIBUTORS</div>
+                    <div class="next-slide-preview" data-next-target="0" title="Back to Home">
+                        <span class="preview-label">NEXT UP</span>
+                        <span class="preview-text">Back to Home</span>
+                        <svg class="preview-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </div>
+                </div>
+                <h2 class="team-center-title">Thank You</h2>
+                <div class="team-grid-4">
+                    <div class="team-card">
+                        <div class="team-avatar-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <span class="team-role">Team Member</span>
+                        <h3 class="team-name">ABDUL HASEEB</h3>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <span class="team-role">Team Member</span>
+                        <h3 class="team-name">KARTHIKA</h3>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <span class="team-role">Team Member</span>
+                        <h3 class="team-name">PAVITHRA</h3>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        </div>
+                        <span class="team-role">Team Member</span>
+                        <h3 class="team-name">SANIYA</h3>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Controls Bar -->
+        <footer class="bottom-controls">
+            <button class="control-btn" id="btn-prev" aria-label="Previous Slide">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+                Prev
+            </button>
+            <div class="slide-counter" id="slide-counter">01 / 10</div>
+            <button class="control-btn" id="btn-next" aria-label="Next Slide">
+                Next
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+            <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.2);"></div>
+            <button class="control-btn" id="btn-autoplay" aria-label="Toggle Auto Play">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+                Play
+            </button>
+            <button class="control-btn" id="btn-fullscreen" aria-label="Toggle Fullscreen">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+                </svg>
+                Fullscreen
+            </button>
+            <div class="keyboard-hints">
+                <span><span class="kbd-tag">←</span> <span class="kbd-tag">→</span> Navigate</span>
+                <span><span class="kbd-tag">F</span> Fullscreen</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="nebula.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
